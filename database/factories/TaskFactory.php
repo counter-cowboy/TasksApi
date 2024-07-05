@@ -16,7 +16,7 @@ class TaskFactory extends Factory
             'title' => $this->faker->word(),
             'description' => $this->faker->text(),
             'status' => $this->faker->word(),
-            'deadline' => $this->faker->word(),
+            'deadline' => $this->faker->date(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
