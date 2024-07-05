@@ -26,7 +26,7 @@ class TaskController extends TaskBaseController
 
     public function Update(TaskRequest $request, Task $task)
     {
-        $taskRes=$this->service->update( $request ->validated(), $task);
+        $taskRes = $this->service->update($request->validated(), $task);
 
         return new TaskResource($taskRes);
     }

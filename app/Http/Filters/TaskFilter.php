@@ -25,21 +25,21 @@ class TaskFilter extends AbstractFilter
         ];
     }
 
-    public function title(Builder $builder, $value)
+    public function title(Builder $builder, $value): void
     {
         $builder->where('title', 'like', "%{$value}%");
     }
 
-    public function description(Builder $builder, $value)
+    public function description(Builder $builder, $value): void
     {
         $builder->where('description', 'like', "%{$value}%");
     }
 
-    public function status(Builder $builder, $value)
+    public function status(Builder $builder, $value): void
     {
         $builder->where('status','like', "%{$value}%");
     }
-    public function deadline(Builder $builder, $value)
+    public function deadline(Builder $builder, $value): void
     {
         $builder->where('deadline','like', "%{$value}%");
     }
