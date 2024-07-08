@@ -11,7 +11,7 @@ class FilterRequest extends FormRequest
         return [
             'title' => ['string'],
             'description' => ['string'],
-            'status' => [''],
+            'status' => ['string'],
             'deadline' => ['string'],
         ];
     }

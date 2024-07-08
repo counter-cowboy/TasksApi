@@ -15,6 +15,15 @@ class TaskRequest extends FormRequest
             'deadline' => ['required', 'string'],
         ];
     }
+    public function messages()
+    {
+        return [
+            'title.required'=> 'Title field required',
+            'description.required'=> 'Description field required',
+            'status.required'=> 'Status field required',
+            'deadline.required'=> 'Deadline field required',
+        ];
+    }
 
     public function authorize(): bool
     {
