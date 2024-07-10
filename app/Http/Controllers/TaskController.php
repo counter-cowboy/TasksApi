@@ -11,15 +11,14 @@ class TaskController extends TaskBaseController
 {
     public function index(FilterRequest $request)
     {
-        $tasks = $this->service->index($request->validated());
-        return TaskResource::collection($tasks);
-        // If you want to use pagination, uncomment the lines below and comment
-        // out the lines above. But it seems that it is better to put data filtering
-        // in a separate controller.
+        // If you want to use search for all items but without pagination
+        // with some smart filter method
 
-        // $tasks = Task::paginate(10);
-        // return $tasks;
+//        $tasks = $this->service->index($request->validated());
+//        return TaskResource::collection($tasks);
 
+        // With pagination
+        return $this->service->search($request->validated() );
     }
 
     public function store(TaskRequest $request)
