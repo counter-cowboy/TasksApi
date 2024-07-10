@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\TaskFilter;
 use App\Http\Requests\FilterRequest;
 use App\Http\Requests\TaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
-use Illuminate\Contracts\Container\BindingResolutionException;
 
 class TaskController extends TaskBaseController
 {
