@@ -3,29 +3,53 @@
 namespace App\Services;
 
 use App\Http\Filters\TaskFilter;
+use App\Http\Requests\TaskRequest;
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
+
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use Validator;
 
 class TaskService
 {
-    public function index($data)
-    {
-        $filter = app()->make(TaskFilter::class, ['queryParams' => array_filter($data)]);
 
-        return Task::filter($filter)->get();
-    }
 
-    public function store($data)
+    public function store(TaskRequest $request)
     {
-        return Task::create($data);
+        $rules = [
+            'title' => ['required'],
+            'description' => ['required'],
+            'status' => ['required'],
+            'deadline' => ['required'],
+        ];
+        $validator=Validator::make($request->all(), $rules);
+
+        if ($validator->fails())
+        {
+            $responseArr =  [];
+            $responseArr['status']=false;
+            $responseArr['data']=[];
+            $responseArr['message'] = $validator->errors();
+            return response()->json($responseArr, ResponseAlias::HTTP_BAD_REQUEST);
+        }
+        else
+        {
+            $task=Task::firstOrCreate($request->validated());
+            return new TaskResource($task);
+        }
     }
 
     public function update($data ,Task $task)
     {
-       return $task->update($data);
+        $task->update($data);
+
+       return $task;
     }
 
-    public function search($data)
+    public function index($data)
     {
         $query=Task::query();
 

@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('description');
             $table->string('status');
-            $table->string('deadline');
+            $table->date('deadline');
             $table->timestamps();
             $table->softDeletes();
         });

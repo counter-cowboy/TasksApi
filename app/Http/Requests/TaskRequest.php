@@ -9,10 +9,10 @@ class TaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string'],
-            'description' => ['required', 'string'],
-            'status' => ['required', 'string'],
-            'deadline' => ['required', 'string'],
+            'title' => ['string'],
+            'description' => [ 'string'],
+            'status' => ['string'],
+            'deadline' => ['date'],
         ];
     }
     public function messages()

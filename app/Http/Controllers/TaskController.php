@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FilterRequest;
 use App\Http\Requests\TaskRequest;
+use App\Http\Requests\TaskUpdateRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 
@@ -11,20 +12,15 @@ class TaskController extends TaskBaseController
 {
     public function index(FilterRequest $request)
     {
-        // If you want to use search for all items but without pagination
-        // with some smart filter method
 
-//        $tasks = $this->service->index($request->validated());
-//        return TaskResource::collection($tasks);
-
-        // With pagination
-        return $this->service->search($request->validated() );
+        return $this->service->index($request->validated());
     }
 
     public function store(TaskRequest $request)
     {
-        $task = $this->service->store($request->validated());
-        return new TaskResource($task);
+        $task = $this->service->store($request);
+
+        return $task;
     }
 
     public function show(Task $task)
@@ -32,7 +28,7 @@ class TaskController extends TaskBaseController
         return new TaskResource($task);
     }
 
-    public function update(TaskRequest $request, Task $task)
+    public function update(TaskUpdateRequest $request, Task $task)
     {
         $taskRes = $this->service->update($request->validated(), $task);
 
